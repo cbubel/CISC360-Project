@@ -27,6 +27,9 @@ NearestNeigborResize::~NearestNeigborResize() {
 
 struct pixel {
 	int r, g, b, a;
+	pixel() {
+		r = 0, g = 0, b = 0, a = 0;
+	}
 };
 
 /*
@@ -37,6 +40,9 @@ struct pixel {
 * h2 = new height
 */
 pixel * resizePixels(pixel * pixels, int w1, int h1, int w2, int h2) {
+	clock_t t;
+	t = clock();
+
 	pixel * temp = new pixel[w2 * h2];
 	double x_ratio = w1/(double)w2;
 	double y_ratio = h1/(double)h2;
@@ -48,14 +54,24 @@ pixel * resizePixels(pixel * pixels, int w1, int h1, int w2, int h2) {
 	    		temp[(i*w2)+j] = pixels[(int)((py*w1)+px)];
 		}
 	}
+
+	t = clock() - t;
+	cout << t << endl;
+
 	return temp;
 }
 
 int main() {
-	clock_t t;
-	t = clock();
-	cout << "Hello World!" << endl;
-	t = clock() - t;
-	cout << t << endl;
+	int size = 10000;
+	pixel * data = new pixel[size];
+	for(int i = 0; i < size; i++) {
+		pixel * p = new pixel();
+		data[i] = *p;
+	}
+	//clock_t t;
+	//t = clock();
+	resizePixels(data, 100, 100, 6000, 4000);
+	//t = clock() - t;
+	//cout << t << endl;
 	return 0;
 }
