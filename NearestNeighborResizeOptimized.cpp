@@ -5,7 +5,7 @@
  *      Author: Matthew
  */
 
-#include "NearestNeigborResize.h"
+#include "NearestNeighborResizeOptimized.h"
 #include <cmath>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,12 +16,12 @@
 
 using namespace std;
 
-NearestNeigborResize::NearestNeigborResize() {
+NearestNeighborResizeOptimized::NearestNeighborResizeOptimized() {
 	// TODO Auto-generated constructor stub
 
 }
 
-NearestNeigborResize::~NearestNeigborResize() {
+NearestNeighborResizeOptimized::~NearestNeighborResizeOptimized() {
 	// TODO Auto-generated destructor stub
 }
 
@@ -76,10 +76,6 @@ int main() {
 		pixel * p = new pixel();
 		data[i] = *p;
 	}
-	//clock_t t;
-	//t = clock();
-	resizePixels(data, 100, 100, 60000, 60000);
-	//t = clock() - t;
-	//cout << t << endl;
+	resizePixels(data, 100, 100, 30000, 30000);
 	return 0;
 }
