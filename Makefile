@@ -1,15 +1,6 @@
-CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
-
-OBJS =		NearestNeighborResizeOptimized.o
-
-LIBS =
-
-TARGET =	NearestNeigbhorResizeOptimized.exe;
-
-$(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
-
-all:	$(TARGET)
+all:
+	g++ -std=c++11 NearestNeighborResizeOptimized.cpp -o optimized
+	g++ -std=c++11 NearestNeighborResizeOptimized.cpp -o optimized.exe
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf *o optimized.exe optimized

@@ -5,7 +5,7 @@
  *      Author: Matthew
  */
 
-#include "NearestNeigborResize.h"
+#include "NearestNeighborResizeOptimized.h"
 #include <cmath>
 #include <stdio.h>
 #include <stdlib.h>
