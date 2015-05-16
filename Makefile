@@ -1,10 +1,10 @@
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0
 
-OBJS =		NearestNeigborResizeOptimized.o
+OBJS =		NearestNeighborResizeOptimized.o
 
 LIBS =
 
-TARGET =	NearestNeigborResizeOptimized.exe
+TARGET =	NearestNeigbhorResizeOptimized.exe;
 
 $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
