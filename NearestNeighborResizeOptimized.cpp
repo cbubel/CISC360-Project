@@ -16,12 +16,12 @@
 
 using namespace std;
 
-NearestNeigborResize::NearestNeigborResize() {
+NearestNeighborResizeOptimized::NearestNeighborResizeOptimized() {
 	// TODO Auto-generated constructor stub
 
 }
 
-NearestNeigborResize::~NearestNeigborResize() {
+NearestNeighborResizeOptimized::~NearestNeighborResizeOptimized() {
 	// TODO Auto-generated destructor stub
 }
 

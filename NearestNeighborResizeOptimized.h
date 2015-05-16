@@ -5,14 +5,14 @@
  *      Author: Matthew
  */
 
-#ifndef NEARESTNEIGBORRESIZE_H_
-#define NEARESTNEIGBORRESIZE_H_
+#ifndef NEARESTNEIHGBORRESIZEOPTIMIZED_H_
+#define NEARESTNEIHGBORRESIZEOPTIMIZED_H_
 
-class NearestNeigborResize {
+class NearestNeighborResizeOptimized {
 public:
-	NearestNeigborResize();
-	virtual ~NearestNeigborResize();
+	NearestNeighborResizeOptimized();
+	virtual ~NearestNeighborResizeOptimized();
 	int* resizePixels(int * pixels, int w1, int h1, int w2, int h2);
 };
 
-#endif /* NEARESTNEIGBORRESIZE_H_ */
+#endif /* NEARESTNEIGHBORRESIZEOPTIMIZED_H_ */
