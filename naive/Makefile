@@ -1,15 +1,6 @@
-CXXFLAGS =	-g -Wall -fmessage-length=0
-
-OBJS =		NearestNeigborResizeOptimized.o
-
-LIBS =
-
-TARGET =	NearestNeigborResizeOptimized.exe
-
-$(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
-
-all:	$(TARGET)
+all:
+	g++ -std=c++11 NearestNeighborResize.cpp -o naive
+	g++ -std=c++11 NearestNeighborResize.cpp -o naive.exe
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf *o naive.exe naive
