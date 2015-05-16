@@ -13,6 +13,7 @@
 #include <cstring>
 #include <time.h>
 #include <sys/time.h>
+#include <fstream>
 
 using namespace std;
 
@@ -76,6 +77,20 @@ int main() {
 		pixel * p = new pixel();
 		data[i] = *p;
 	}
-	resizePixels(data, 100, 100, 30000, 30000);
+	
+	pixel * results = resizePixels(data, 100, 100, 6000, 6000);
+	
+	ofstream myfile;
+	myfile.open ("results.txt");
+	for(int i = 0; i < 36000000; i++) {
+		myfile << "pixel " << i << " R: " << results->r << " G: " << results->g << " B: " << results->b << " A: " << results->a << "\n";
+		//myfile << i;
+		//myfile << results->r;
+		//myfile << results->g;
+		//myfile << results->b;
+		//myfile << results->a;
+		//myfile << "\n";
+	}
+	myfile.close();
 	return 0;
 }
