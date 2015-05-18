@@ -7,27 +7,18 @@
 
 #include "NearestNeighborResize.h"
 #include <cmath>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
 #include <cstring>
-#include <time.h>
+#include <ctime>
 #include <sys/time.h>
 #include <fstream>
 
 using namespace std;
 
-NearestNeigborResize::NearestNeigborResize() {
-	// TODO Auto-generated constructor stub
-
-}
-
-NearestNeigborResize::~NearestNeigborResize() {
-	// TODO Auto-generated destructor stub
-}
-
 struct pixel {
-	int r, g, b, a;
+	unsigned char r, g, b, a;
 	pixel() {
 		r = 0, g = 0, b = 0, a = 0;
 	}
@@ -43,39 +34,46 @@ struct pixel {
 pixel * resizePixels(pixel * pixels, int w1, int h1, int w2, int h2) {
 	clock_t t;
 	t = clock();
-
 	pixel * temp = new pixel[w2 * h2];
 	double x_ratio = w1/(double)w2;
 	double y_ratio = h1/(double)h2;
 	double px, py;
-	for (int i=0;i<h2;i++) {
-	        for (int j=0;j<w2;j++) {
-	    		px = floor(j*x_ratio);
-	    		py = floor(i*y_ratio);
-	    		temp[(i*w2)+j] = pixels[(int)((py*w1)+px)];
+	for (int r=0;r<h2;r++) {
+	    for (int c=0;c<w2;c++) {
+			    px = floor(c*x_ratio);
+			    py = floor(r*y_ratio);
+			    temp[(r*w2)+c] = pixels[(int)((py*w1)+px)];
 		}
 	}
-
 	t = clock() - t;
 	cout << t << endl;
 
 	return temp;
 }
 
-int main() {
-	int size = 10000;
-	pixel * data = new pixel[size];
-	for(int i = 0; i < size; i++) {
-		pixel * p = new pixel();
-		data[i] = *p;
+int main(int ac, char** av) {
+	srand(atoi(av[1]));
+	int oldWidth = atoi(av[2]);
+	int oldHeight = atoi(av[3]);
+	int newWidth = atoi(av[4]);
+	int newHeight = atoi(av[5]);
+	
+	pixel * data = new pixel[oldWidth * oldHeight];
+	for(int i = 0; i < oldWidth * oldHeight; i++) {
+		pixel p;
+		p.r = rand() % 256;
+		p.g = rand() % 256;
+		p.b = rand() % 256;
+		p.a = rand() % 256;
+		data[i] = p;
 	}
-	//clock_t t;
-	//t = clock();
-	pixel * results = resizePixels(data, 100, 100, 6000, 6000);
+	
+	pixel * results = resizePixels(data, oldWidth, oldHeight, newWidth, newHeight);
+	
 	ofstream myfile;
-	myfile.open ("results.txt");
-	for(int i = 0; i < 36000000; i++) {
-		myfile << "pixel " << i << " R: " << results->r << " G: " << results->g << " B: " << results->b << " A: " << results->a << "\n";
+	myfile.open ("results.txt", std::ofstream::binary);
+	for(int i = 0; i < newWidth * newHeight; i++) {
+		myfile << results[i].r << results[i].g << results[i].b << results[i].a;
 		//myfile << i;
 		//myfile << results->r;
 		//myfile << results->g;
@@ -84,7 +82,7 @@ int main() {
 		//myfile << "\n";
 	}
 	myfile.close();
-	//t = clock() - t;
-	//cout << t << endl;
+	delete[] data;
+	delete[] results;
 	return 0;
 }
