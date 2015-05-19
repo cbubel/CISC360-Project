@@ -44,22 +44,23 @@ pixel * resizePixels(pixel * pixels, int w1, int h1, int w2, int h2) {
 	t = clock();
 
 
-	const int R_STRIDE = 32;
-	const int C_STRIDE = 32;
+	const int R_STRIDE = 16;
+	const int C_STRIDE = 16;
 
 	pixel * temp = new pixel[w2 * h2];
 	double x_ratio = w1/(double)w2;
 	double y_ratio = h1/(double)h2;
 	double px, py;
+	
 	for (int R=0;R<h2;R+=R_STRIDE) {
 	        for (int C=0;C<w2;C+=C_STRIDE) {
-				for(int r=R; r<(R+R_STRIDE); r++) {
-					for(int c=C; c<(C+C_STRIDE); c++) {
-			    		px = floor(c*x_ratio);
-			    		py = floor(r*y_ratio);
-			    		temp[(r*C_STRIDE)+c] = pixels[(int)((py*w1)+px)];
-					}
+			for(int r=R; r<(R+R_STRIDE); r++) {
+				for(int c=C; c<(C+C_STRIDE); c++) {
+					px = floor(c*x_ratio);
+					py = floor(r*y_ratio);
+					temp[(r*C_STRIDE)+c] = pixels[(int)((py*w1)+px)];
 				}
+			}
 		}
 	}
 
@@ -76,6 +77,6 @@ int main() {
 		pixel * p = new pixel();
 		data[i] = *p;
 	}
-	resizePixels(data, 100, 100, 30000, 30000);
+	resizePixels(data, 100, 100, 3000, 3000);
 	return 0;
 }

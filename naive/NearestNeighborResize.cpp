@@ -70,7 +70,7 @@ int main() {
 	}
 	//clock_t t;
 	//t = clock();
-	resizePixels(data, 100, 100, 6000, 4000);
+	resizePixels(data, 100, 100, 3000, 3000);
 	//t = clock() - t;
 	//cout << t << endl;
 	return 0;
